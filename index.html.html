@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ecosysteme Xam Xam IA — Créer des Sites Web avec l'IA</title>
+<meta name="description" content="Ecosysteme Xam Xam IA — Nous créons votre site web avec l'intelligence artificielle Claude. Brief, génération, itérations, mise en ligne. Dakar, Sénégal.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════ */
+:root {
+  --ink:     #0c0a08;
+  --paper:   #faf8f3;
+  --cream:   #f3ede0;
+  --gold:    #c8911f;
+  --gold2:   #e8b84b;
+  --gold3:   #f5d78a;
+  --green:   #1a5c35;
+  --green2:  #25894f;
+  --green3:  #4cc27a;
+  --wa:      #25d366;
+  --wa2:     #128c7e;
+  --text:    #1c1814;
+  --muted:   #7a6e5e;
+  --border:  #e0d8c8;
+  --shadow:  rgba(12,10,8,0.08);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* GRAIN */
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9999; mix-blend-mode:multiply;
+}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════ */
+h1,h2,h3 { font-family: 'Playfair Display', serif; line-height: 1.1; }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+
+/* ═══════════════════════════════════════
+   NAV
+═══════════════════════════════════════ */
+nav {
+  position: fixed; top:0; left:0; right:0;
+  z-index: 100;
+  background: rgba(250,248,243,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: box-shadow 0.3s;
+}
+
+nav.scrolled { box-shadow: 0 4px 30px var(--shadow); }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none;
+}
+
+.nav-mark {
+  width: 36px; height: 36px;
+  background: var(--ink);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; font-size: 1.1rem;
+  color: var(--gold2);
+}
+
+.nav-name {
+  display: flex; flex-direction: column; line-height: 1.15;
+}
+
+.nav-name strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.01em;
+}
+
+.nav-name span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem; color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none; color: var(--muted);
+  font-size: 0.85rem; font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+
+.nav-cta {
+  background: var(--wa) !important;
+  color: white !important;
+  padding: 0.45rem 1rem !important;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37,211,102,0.35) !important;
+}
+
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 6vw 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background pattern */
+#hero::after {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,145,31,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(26,92,53,0.06) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(200,145,31,0.1);
+  border: 1px solid rgba(200,145,31,0.25);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.hero-eyebrow .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-title {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+
+.hero-title .line-accent {
+  font-style: italic;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.3s ease both;
+}
+
+.btn-wa {
+  background: var(--wa);
+  color: white;
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 700; font-size: 0.95rem;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.6rem;
+  transition: all 0.25s;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+}
+
+.btn-wa:hover {
+  background: var(--wa2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37,211,102,0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--ink);
+  padding: 0.85rem 1.75rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  font-weight: 600; font-size: 0.95rem;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.6rem;
+  transition: all 0.25s;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(200,145,31,0.05);
+}
+
+/* HERO VISUAL */
+.hero-visual {
+  position: relative;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-card {
+  background: var(--ink);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(12,10,8,0.25), 0 0 0 1px rgba(200,145,31,0.15);
+}
+
+.hero-card::before {
+  content:'';
+  position: absolute;
+  top:-40px; right:-40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(200,145,31,0.15) 0%, transparent 70%);
+}
+
+.hc-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.hc-dots { display: flex; gap: 5px; }
+.hc-dots span { width: 9px; height: 9px; border-radius: 50%; }
+.hc-dots span:nth-child(1) { background: #ff5f57; }
+.hc-dots span:nth-child(2) { background: #febc2e; }
+.hc-dots span:nth-child(3) { background: #28c840; }
+
+.hc-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; color: rgba(250,248,243,0.3);
+  letter-spacing: 0.08em;
+}
+
+.hc-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hc-step {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: stepIn 0.4s ease forwards;
+}
+
+.hc-step:nth-child(1) { animation-delay: 0.6s; }
+.hc-step:nth-child(2) { animation-delay: 0.8s; }
+.hc-step:nth-child(3) { animation-delay: 1.0s; }
+.hc-step:nth-child(4) { animation-delay: 1.2s; }
+.hc-step:nth-child(5) { animation-delay: 1.4s; }
+
+@keyframes stepIn {
+  to { opacity:1; transform: translateX(0); }
+}
+
+.hc-step.active {
+  background: rgba(200,145,31,0.12);
+  border-color: rgba(200,145,31,0.3);
+}
+
+.hc-step.done {
+  background: rgba(26,92,53,0.15);
+  border-color: rgba(37,211,102,0.2);
+}
+
+.hc-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: grid; place-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; color: rgba(250,248,243,0.5);
+  flex-shrink: 0;
+}
+
+.hc-step.active .hc-num { background: var(--gold); color: var(--ink); }
+.hc-step.done .hc-num { background: var(--wa); color: white; content:'✓'; }
+
+.hc-step-text {
+  font-size: 0.78rem;
+  color: rgba(250,248,243,0.5);
+  font-weight: 500;
+}
+
+.hc-step.active .hc-step-text { color: var(--gold2); }
+.hc-step.done .hc-step-text { color: #7de8aa; }
+
+.hc-step-tag {
+  margin-left: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(250,248,243,0.2);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+
+.hc-step.active .hc-step-tag { color: rgba(200,145,31,0.6); }
+.hc-step.done .hc-step-tag { color: rgba(37,211,102,0.5); }
+
+/* ═══════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════ */
+.stats-bar {
+  background: var(--ink);
+  padding: 1.5rem 6vw;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  border-top: 1px solid rgba(200,145,31,0.2);
+  border-bottom: 1px solid rgba(200,145,31,0.2);
+}
+
+.stat {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--gold2);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,248,243,0.35);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════
+   SECTIONS COMMUNES
+═══════════════════════════════════════ */
+section { padding: 6rem 6vw; }
+
+.section-inner { max-width: 1200px; margin: 0 auto; }
+
+.section-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--gold);
+  text-transform: uppercase; letter-spacing: 0.15em;
+  margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+.section-eyebrow::before {
+  content:'';
+  display: inline-block;
+  width: 20px; height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900; letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 3rem;
+}
+
+/* ═══════════════════════════════════════
+   PIPELINE SECTION
+═══════════════════════════════════════ */
+#pipeline { background: var(--cream); }
+
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  position: relative;
+}
+
+.pipeline-steps::before {
+  content:'';
+  position: absolute;
+  top: 32px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.ps-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.ps-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 40px var(--shadow);
+}
+
+.ps-icon {
+  width: 56px; height: 56px;
+  background: var(--ink);
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-size: 1.5rem;
+  margin: 0 auto 1.2rem;
+  position: relative; z-index: 1;
+  transition: transform 0.3s;
+}
+
+.ps-card:hover .ps-icon { transform: scale(1.1) rotate(-3deg); }
+
+.ps-num {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.ps-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.ps-card p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.svc-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.svc-card::before {
+  content:'';
+  position: absolute;
+  inset:0;
+  background: linear-gradient(135deg, rgba(200,145,31,0.03) 0%, transparent 60%);
+  opacity:0; transition: opacity 0.3s;
+}
+
+.svc-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 16px 50px var(--shadow); }
+.svc-card:hover::before { opacity:1; }
+
+.svc-card.featured {
+  background: var(--ink);
+  border-color: var(--gold);
+  color: var(--paper);
+}
+
+.svc-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+.svc-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; margin-bottom: 0.75rem;
+}
+
+.svc-card.featured h3 { color: var(--gold2); }
+
+.svc-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+.svc-card.featured p { color: rgba(250,248,243,0.55); }
+
+.svc-price {
+  margin-top: 1.25rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+.svc-card.featured .svc-price { color: var(--gold2); }
+
+.svc-price::before { content:'→'; }
+
+/* ═══════════════════════════════════════
+   ABOUT / STORY
+═══════════════════════════════════════ */
+#about { background: var(--ink); color: var(--paper); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+#about .section-eyebrow { color: var(--gold2); }
+#about .section-eyebrow::before { background: var(--gold2); }
+#about .section-title { color: var(--paper); }
+#about .section-sub { color: rgba(250,248,243,0.55); max-width: 100%; }
+
+.about-features {
+  display: flex; flex-direction: column; gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.af-item {
+  display: flex; gap: 0.85rem;
+  padding: 0.9rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: border-color 0.2s;
+}
+
+.af-item:hover { border-color: rgba(200,145,31,0.3); }
+
+.af-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(200,145,31,0.15);
+  display: grid; place-items: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+
+.af-text strong { display: block; font-size: 0.85rem; font-weight: 600; color: var(--paper); margin-bottom: 0.2rem; }
+.af-text span { font-size: 0.75rem; color: rgba(250,248,243,0.4); line-height: 1.5; }
+
+.about-visual {
+  position: relative;
+}
+
+.av-main {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,145,31,0.2);
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.av-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,248,243,0.3);
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+}
+
+.av-code {
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+
+.code-line {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: rgba(250,248,243,0.4);
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.03);
+}
+
+.code-line .kw { color: var(--gold2); }
+.code-line .str { color: var(--green3); }
+.code-line .fn { color: #79c0ff; }
+.code-line .cm { color: rgba(250,248,243,0.25); font-style: italic; }
+
+/* ═══════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════ */
+#testimonials { background: var(--cream); }
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.testi-card {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.testi-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px var(--shadow); border-color: var(--gold); }
+
+.testi-quote {
+  font-size: 2.5rem;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.testi-text {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.testi-author {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--green));
+  display: grid; place-items: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; font-size: 0.9rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.testi-info strong { display: block; font-size: 0.82rem; font-weight: 600; }
+.testi-info span { font-size: 0.72rem; color: var(--muted); font-family: 'IBM Plex Mono', monospace; }
+
+/* ═══════════════════════════════════════
+   CTA SECTION
+═══════════════════════════════════════ */
+#cta {
+  background: linear-gradient(135deg, var(--ink) 0%, #1a1410 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#cta::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 0%, rgba(200,145,31,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 100%, rgba(26,92,53,0.1) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.cta-inner { position: relative; z-index: 1; }
+
+#cta .section-eyebrow { justify-content: center; color: var(--gold2); }
+#cta .section-eyebrow::before { background: var(--gold2); }
+
+#cta .section-title { color: var(--paper); margin-left: auto; margin-right: auto; max-width: 700px; }
+#cta .section-sub { color: rgba(250,248,243,0.45); margin: 1rem auto 2.5rem; text-align: center; max-width: 500px; }
+
+.cta-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.cta-phone {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: rgba(250,248,243,0.3);
+  display: flex; align-items: center; gap: 0.5rem;
+  justify-content: center;
+}
+
+.cta-phone a {
+  color: var(--gold2);
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: #080604;
+  padding: 3rem 6vw;
+  border-top: 1px solid rgba(200,145,31,0.15);
+}
+
+.footer-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.5rem;
+}
+
+.footer-logo {
+  display: flex; align-items: center; gap: 0.75rem;
+  text-decoration: none;
+}
+
+.footer-logo .mark {
+  width: 32px; height: 32px;
+  background: var(--gold);
+  border-radius: 6px;
+  display: grid; place-items: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900; color: var(--ink); font-size: 1rem;
+}
+
+.footer-logo span {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.9rem; color: rgba(250,248,243,0.6);
+}
+
+.footer-links {
+  display: flex; gap: 1.5rem; list-style: none;
+}
+
+.footer-links a {
+  font-size: 0.78rem;
+  color: rgba(250,248,243,0.3);
+  text-decoration: none; transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--gold2); }
+
+.footer-copy {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(250,248,243,0.2);
+  text-align: center;
+  width: 100%;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 1rem;
+}
+
+/* ═══════════════════════════════════════
+   WHATSAPP FLOATING BUTTON
+═══════════════════════════════════════ */
+.wa-float {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  z-index: 500;
+}
+
+.wa-btn-main {
+  width: 60px; height: 60px;
+  background: var(--wa);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+  transition: all 0.3s;
+  position: relative;
+}
+
+.wa-btn-main:hover {
+  background: var(--wa2);
+  transform: scale(1.1);
+  box-shadow: 0 10px 40px rgba(37,211,102,0.6);
+}
+
+.wa-btn-main svg { width: 32px; height: 32px; fill: white; }
+
+/* Pulse ring */
+.wa-btn-main::before, .wa-btn-main::after {
+  content:'';
+  position: absolute; inset:0;
+  border-radius: 50%;
+  border: 2px solid var(--wa);
+  animation: wa-pulse 2.5s ease-out infinite;
+}
+
+.wa-btn-main::after { animation-delay: 1.2s; }
+
+@keyframes wa-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Tooltip */
+.wa-tooltip {
+  position: absolute;
+  right: 75px; bottom: 50%;
+  transform: translateY(50%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateY(50%) translateX(8px);
+}
+
+.wa-tooltip::after {
+  content:'';
+  position: absolute;
+  right: -5px; top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right: none;
+  border-left-color: var(--ink);
+}
+
+.wa-float:hover .wa-tooltip {
+  opacity: 1;
+  transform: translateY(50%) translateX(0);
+}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(24px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity:0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible { opacity:1; transform: translateY(0); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { display: none; }
+  .pipeline-steps { grid-template-columns: repeat(3, 1fr); }
+  .pipeline-steps::before { display: none; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .testi-grid { grid-template-columns: 1fr 1fr; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width: 640px) {
+  nav { padding: 0 1.25rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.5rem; }
+  .pipeline-steps { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .stats-bar { padding: 1.5rem; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+  .hero-actions { flex-direction: column; }
+  .btn-wa, .btn-outline { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-mark">X</div>
+    <div class="nav-name">
+      <strong>Xam Xam IA</strong>
+      <span>Ecosysteme Digital</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#pipeline">Notre méthode</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#testimonials">Témoignages</a></li>
+    <li>
+      <a href="https://wa.me/221775485985?text=Bonjour%20Ecosysteme%20Xam%20Xam%20IA%2C%20je%20souhaite%20cr%C3%A9er%20mon%20site%20web%20%F0%9F%8C%90" target="_blank" class="nav-cta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.856L.057 23.572a.75.75 0 00.937.937l5.716-1.47A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.511-5.18-1.404l-.371-.22-3.839.987.987-3.84-.22-.37A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Dakar, Sénégal · Propulsé par Claude IA
+      </div>
+      <h1 class="hero-title">
+        Votre site web créé<br>
+        par <span class="line-accent">l'Intelligence</span><br>
+        Artificielle
+      </h1>
+      <p class="hero-sub">
+        Ecosysteme Xam Xam IA conçoit des sites web professionnels en utilisant Claude, le meilleur modèle d'IA. Brief → Génération → Itérations → En ligne en 24h.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/221775485985?text=Bonjour%20Ecosysteme%20Xam%20Xam%20IA%2C%20je%20veux%20cr%C3%A9er%20mon%20site%20web%20avec%20l%27IA%20%F0%9F%8C%90%20Pouvez-vous%20m%27aider%20%3F" target="_blank" class="btn-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.856L.057 23.572a.75.75 0 00.937.937l5.716-1.47A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.511-5.18-1.404l-.371-.22-3.839.987.987-3.84-.22-.37A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Discuter sur WhatsApp
+        </a>
+        <a href="#pipeline" class="btn-outline">
+          Voir notre méthode →
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hc-header">
+          <div class="hc-dots"><span></span><span></span><span></span></div>
+          <div class="hc-title">Pipeline Xam Xam IA — Votre projet</div>
+        </div>
+        <div class="hc-pipeline">
+          <div class="hc-step done">
+            <div class="hc-num">✓</div>
+            <div class="hc-step-text">Brief client reçu</div>
+            <div class="hc-step-tag">Terminé</div>
+          </div>
+          <div class="hc-step done">
+            <div class="hc-num">✓</div>
+            <div class="hc-step-text">Prompt IA construit</div>
+            <div class="hc-step-tag">Terminé</div>
+          </div>
+          <div class="hc-step active">
+            <div class="hc-num">③</div>
+            <div class="hc-step-text">Génération Claude en cours…</div>
+            <div class="hc-step-tag">En cours</div>
+          </div>
+          <div class="hc-step">
+            <div class="hc-num">④</div>
+            <div class="hc-step-text">Itérations & révisions</div>
+            <div class="hc-step-tag">À venir</div>
+          </div>
+          <div class="hc-step">
+            <div class="hc-num">⑤</div>
+            <div class="hc-step-text">Mise en ligne</div>
+            <div class="hc-step-tag">À venir</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat reveal">
+    <div class="stat-num" data-target="48">0h</div>
+    <div class="stat-label">Livraison max</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:0.1s">
+    <div class="stat-num" data-target="100">0+</div>
+    <div class="stat-label">Sites créés</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:0.2s">
+    <div class="stat-num">Claude</div>
+    <div class="stat-label">Modèle IA utilisé</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:0.3s">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">Support WhatsApp</div>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<section id="pipeline">
+  <div class="section-inner">
+    <div class="section-eyebrow">Notre méthode</div>
+    <h2 class="section-title reveal">De l'idée au site<br><em style="font-style:italic; color:var(--gold)">en 5 étapes</em></h2>
+    <p class="section-sub reveal">Un pipeline IA structuré, transparent et efficace. Vous participez à chaque étape.</p>
+
+    <div class="pipeline-steps">
+      <div class="ps-card reveal">
+        <div class="ps-num">01</div>
+        <div class="ps-icon">📋</div>
+        <h3>Brief</h3>
+        <p>Nous recueillons vos besoins, votre identité visuelle, votre public cible et vos objectifs.</p>
+      </div>
+      <div class="ps-card reveal" style="transition-delay:0.1s">
+        <div class="ps-num">02</div>
+        <div class="ps-icon">✍️</div>
+        <h3>Prompts</h3>
+        <p>Vos informations sont transformées en instructions précises pour guider Claude dans la création.</p>
+      </div>
+      <div class="ps-card reveal" style="transition-delay:0.2s">
+        <div class="ps-num">03</div>
+        <div class="ps-icon">⚡</div>
+        <h3>Génération</h3>
+        <p>Claude génère votre site HTML/CSS/JS complet, responsive, avec animations et contenu réel.</p>
+      </div>
+      <div class="ps-card reveal" style="transition-delay:0.3s">
+        <div class="ps-num">04</div>
+        <div class="ps-icon">🔄</div>
+        <h3>Itérations</h3>
+        <p>Vous reviewez, nous modifions. Autant de révisions que nécessaire jusqu'à votre satisfaction.</p>
+      </div>
+      <div class="ps-card reveal" style="transition-delay:0.4s">
+        <div class="ps-num">05</div>
+        <div class="ps-icon">🚀</div>
+        <h3>Mise en ligne</h3>
+        <p>Déploiement sur Netlify, Vercel ou votre hébergeur. Domaine personnalisé inclus sur demande.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-eyebrow">Ce que nous créons</div>
+    <h2 class="section-title reveal">Nos services<br><em style="font-style:italic; color:var(--gold)">digitaux</em></h2>
+    <p class="section-sub reveal">Tous types de sites, tous secteurs, toutes tailles d'entreprises.</p>
+
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <span class="svc-icon">🏢</span>
+        <h3>Site Vitrine</h3>
+        <p>Présentez votre entreprise avec professionnalisme. Design soigné, contenu optimisé, formulaire de contact.</p>
+        <div class="svc-price">À partir de 75 000 FCFA</div>
+      </div>
+      <div class="svc-card featured reveal" style="transition-delay:0.1s">
+        <span class="svc-icon">🎯</span>
+        <h3>Landing Page</h3>
+        <p>Une page conçue pour convertir. Hero percutant, sections bénéfices, témoignages, CTA optimisé. Résultats garantis.</p>
+        <div class="svc-price">À partir de 50 000 FCFA</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.2s">
+        <span class="svc-icon">🛍️</span>
+        <h3>E-Commerce</h3>
+        <p>Boutique en ligne complète avec catalogue produits, panier, intégration paiement Wave / Orange Money.</p>
+        <div class="svc-price">À partir de 150 000 FCFA</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.1s">
+        <span class="svc-icon">🎨</span>
+        <h3>Portfolio Créatif</h3>
+        <p>Mettez en valeur votre travail avec un portfolio mémorable. Galerie photos, vidéos, études de cas.</p>
+        <div class="svc-price">À partir de 60 000 FCFA</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.2s">
+        <span class="svc-icon">📰</span>
+        <h3>Blog & Magazine</h3>
+        <p>Plateforme de contenu élégante, optimisée SEO, avec gestion d'articles et newsletter intégrée.</p>
+        <div class="svc-price">À partir de 80 000 FCFA</div>
+      </div>
+      <div class="svc-card reveal" style="transition-delay:0.3s">
+        <span class="svc-icon">🤖</span>
+        <h3>App IA Personnalisée</h3>
+        <p>Intégrez l'IA dans votre site : chatbot, générateur de contenu, outil métier. Propulsé par Claude.</p>
+        <div class="svc-price">Sur devis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <div class="section-eyebrow">À propos</div>
+        <h2 class="section-title reveal">Ecosysteme<br><em style="font-style:italic; color:var(--gold2)">Xam Xam IA</em></h2>
+        <p class="section-sub reveal">
+          "Xam Xam" signifie <strong style="color:var(--gold2)">"savoir, connaissance"</strong> en Wolof. Notre mission : démocratiser la présence digitale en Afrique en combinant l'IA de pointe et l'expertise locale.
+        </p>
+
+        <div class="about-features">
+          <div class="af-item reveal">
+            <div class="af-icon">🧠</div>
+            <div class="af-text">
+              <strong>IA de pointe avec Claude</strong>
+              <span>Nous utilisons Claude d'Anthropic, l'un des meilleurs modèles au monde, pour créer des sites d'exception.</span>
+            </div>
+          </div>
+          <div class="af-item reveal" style="transition-delay:0.1s">
+            <div class="af-icon">🌍</div>
+            <div class="af-text">
+              <strong>Expertise locale, vision globale</strong>
+              <span>Basés à Dakar, nous comprenons le marché sénégalais et africain pour créer des sites adaptés.</span>
+            </div>
+          </div>
+          <div class="af-item reveal" style="transition-delay:0.2s">
+            <div class="af-icon">⚡</div>
+            <div class="af-text">
+              <strong>Livraison en 24 à 48h</strong>
+              <span>Grâce à l'IA, nous livrons 10x plus vite que les agences traditionnelles, sans sacrifier la qualité.</span>
+            </div>
+          </div>
+          <div class="af-item reveal" style="transition-delay:0.3s">
+            <div class="af-icon">💬</div>
+            <div class="af-text">
+              <strong>Suivi WhatsApp direct</strong>
+              <span>Communication directe et réactive. Vous suivez l'avancement de votre projet en temps réel.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual reveal">
+        <div class="av-main">
+          <div class="av-label">// Notre stack technologique</div>
+          <div class="av-code">
+            <div class="code-line"><span class="kw">const</span> <span class="fn">project</span> = {</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"ai_model"</span>: <span class="str">"Claude Sonnet 4"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"company"</span>: <span class="str">"Ecosysteme Xam Xam IA"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"location"</span>: <span class="str">"Dakar, Sénégal 🇸🇳"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"pipeline"</span>: [<span class="str">"brief"</span>, <span class="str">"prompt"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"generate"</span>, <span class="str">"iterate"</span>, <span class="str">"deploy"</span>],</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"whatsapp"</span>: <span class="str">"+221 77 548 59 85"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"delivery"</span>: <span class="str">"24 à 48 heures"</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="str">"satisfaction"</span>: <span class="str">"100% garantie"</span></div>
+            <div class="code-line">};</div>
+            <div class="code-line"><span class="cm">// → Votre site est entre de bonnes mains ✦</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="section-eyebrow">Témoignages</div>
+    <h2 class="section-title reveal">Ce que disent<br><em style="font-style:italic;color:var(--gold)">nos clients</em></h2>
+
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Incroyable ! Mon site de restaurant a été livré en moins de 24h. Le design est magnifique et mes clients adorent. Je recommande à 100%.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div class="testi-info">
+            <strong>Aminata Diallo</strong>
+            <span>Restaurant Le Baobab · Dakar</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.1s">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">J'avais un budget limité mais Xam Xam IA a créé un site professionnel qui rivalise avec les grandes agences. L'IA, c'est vraiment l'avenir.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div class="testi-info">
+            <strong>Moussa Ndiaye</strong>
+            <span>Startup FinTech · Saint-Louis</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:0.2s">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Le suivi WhatsApp est top. À chaque étape je voyais l'évolution de mon site. Les itérations ont été rapides et exactement ce que je voulais.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">F</div>
+          <div class="testi-info">
+            <strong>Fatou Sow</strong>
+            <span>Boutique Mode · Thiès</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-inner cta-inner" style="text-align:center; max-width:800px; margin:0 auto">
+    <div class="section-eyebrow" style="justify-content:center">Commencer maintenant</div>
+    <h2 class="section-title reveal" style="max-width:100%;margin-left:auto;margin-right:auto;">
+      Votre site web,<br>
+      <em style="font-style:italic;color:var(--gold2)">prêt en 24 heures</em>
+    </h2>
+    <p class="section-sub reveal" style="margin:1rem auto 2.5rem;color:rgba(250,248,243,0.45)">
+      Contactez-nous sur WhatsApp maintenant. Décrivez votre projet, recevez un devis immédiat et votre site demain.
+    </p>
+    <div class="cta-actions reveal">
+      <a href="https://wa.me/221775485985?text=Bonjour%20%F0%9F%91%8B%20Je%20souhaite%20cr%C3%A9er%20mon%20site%20web%20avec%20Ecosysteme%20Xam%20Xam%20IA.%20Pouvez-vous%20me%20donner%20un%20devis%20%3F" target="_blank" class="btn-wa" style="font-size:1.1rem; padding:1rem 2.5rem">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.856L.057 23.572a.75.75 0 00.937.937l5.716-1.47A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.511-5.18-1.404l-.371-.22-3.839.987.987-3.84-.22-.37A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Démarrer sur WhatsApp
+      </a>
+    </div>
+    <div class="cta-phone reveal">
+      📞 Ou appelez directement :
+      <a href="tel:+221775485985">+221 77 548 59 85</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#hero" class="footer-logo">
+      <div class="mark">X</div>
+      <span>Ecosysteme Xam Xam IA</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="#pipeline">Méthode</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="https://wa.me/221775485985" target="_blank">WhatsApp</a></li>
+    </ul>
+    <a href="https://wa.me/221775485985" target="_blank" class="btn-wa" style="font-size:0.82rem; padding:0.55rem 1.1rem">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.856L.057 23.572a.75.75 0 00.937.937l5.716-1.47A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.511-5.18-1.404l-.371-.22-3.839.987.987-3.84-.22-.37A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      +221 77 548 59 85
+    </a>
+  </div>
+  <div class="footer-inner">
+    <p class="footer-copy">© 2025 Ecosysteme Xam Xam IA — Dakar, Sénégal 🇸🇳 · Propulsé par Claude AI (Anthropic) · Tous droits réservés</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<div class="wa-float">
+  <div class="wa-tooltip">Écrivez-nous sur WhatsApp !</div>
+  <a href="https://wa.me/221775485985?text=Bonjour%20Ecosysteme%20Xam%20Xam%20IA%20%F0%9F%91%8B%20Je%20voudrais%20cr%C3%A9er%20mon%20site%20web%20avec%20l%27IA." target="_blank" class="wa-btn-main" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.856L.057 23.572a.75.75 0 00.937.937l5.716-1.47A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.655-.511-5.18-1.404l-.371-.22-3.839.987.987-3.84-.22-.37A9.95 9.95 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+// NAV scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Animate step in hero (cycle)
+const steps = document.querySelectorAll('.hc-step');
+let active = 2;
+setInterval(() => {
+  steps.forEach((s,i) => {
+    s.classList.remove('active');
+    if (i < active) s.classList.add('done');
+    else s.classList.remove('done');
+  });
+  if (active < steps.length) {
+    steps[active].classList.add('active');
+    active++;
+  } else {
+    active = 0;
+    steps.forEach(s => { s.classList.remove('active','done'); });
+    steps[0].classList.add('active');
+    active = 1;
+  }
+}, 2200);
+</script>
+</body>
+</html>
