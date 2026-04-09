@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="description" content="AIA Sénégal — La plateforme de formation IA No-Code #1 en Afrique. 10 modules, certification officielle, agent IA Mame Yo disponible 24h/24."/>
+<title>AIA Sénégal — Formation IA No-Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --g:#00e676;--gd:#00b050;--bg:#08100a;--s:#101810;--card:#141c14;
+  --b:rgba(0,230,118,.14);--t:#cce8cc;--m:#5a7d5a;--w:#fff;
+  --r:14px;--tr:.25s;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,230,118,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(0,230,118,.022) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;z-index:0}
+a{color:var(--g);text-decoration:none}
+img{max-width:100%;display:block}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(8,16,10,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--b)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--g);letter-spacing:3px;text-transform:uppercase}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--m);font-size:.88rem;font-weight:500;transition:color var(--tr)}
+.nav-links a:hover{color:var(--g)}
+.nav-btn{background:var(--g)!important;color:#000!important;font-weight:700!important;padding:9px 22px;border-radius:50px;transition:transform var(--tr),box-shadow var(--tr)}
+.nav-btn:hover{transform:scale(1.05)!important;box-shadow:0 0 20px rgba(0,230,118,.4)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--g);border-radius:2px}
+
+/* HERO */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 80px}
+.glow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(0,230,118,.09) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,230,118,.09);border:1px solid var(--b);padding:6px 18px;border-radius:50px;font-size:.75rem;color:var(--g);letter-spacing:2px;text-transform:uppercase;margin-bottom:30px;animation:up .6s ease both}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--g);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.4rem,7vw,5.2rem);line-height:1.04;letter-spacing:-2px;color:var(--w);animation:up .7s .1s ease both}
+h1 em{color:var(--g);font-style:normal}
+.sub{max-width:560px;font-size:clamp(1rem,2.5vw,1.18rem);color:var(--m);margin:22px auto 38px;animation:up .7s .2s ease both}
+.btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:up .7s .3s ease both}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 34px;border-radius:50px;font-weight:700;font-size:.95rem;border:none;cursor:pointer;font-family:inherit;text-decoration:none;transition:transform var(--tr),box-shadow var(--tr)}
+.btn-p{background:var(--g);color:#000;box-shadow:0 0 28px rgba(0,230,118,.22)}
+.btn-p:hover{transform:scale(1.05);box-shadow:0 0 40px rgba(0,230,118,.5);color:#000}
+.btn-o{background:transparent;color:var(--g);border:1.5px solid var(--b)}
+.btn-o:hover{border-color:var(--g);background:rgba(0,230,118,.07)}
+.btn-sm{padding:10px 22px;font-size:.85rem}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* STATS BAR */
+.stats-bar{display:flex;gap:0;margin-top:60px;flex-wrap:wrap;justify-content:center;animation:up .7s .4s ease both;border:1px solid var(--b);border-radius:16px;overflow:hidden;background:var(--card)}
+.stat-item{padding:22px 36px;text-align:center;border-right:1px solid var(--b);flex:1;min-width:120px}
+.stat-item:last-child{border-right:none}
+.sn{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--g)}
+.sl{font-size:.72rem;color:var(--m);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+
+/* SECTIONS */
+.sec{position:relative;z-index:1;padding:96px 24px}
+.sec-dark{background:var(--s)}
+.wrap{max-width:1080px;margin:0 auto}
+.wrap-sm{max-width:700px;margin:0 auto}
+.wrap-md{max-width:880px;margin:0 auto}
+.lbl{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:10px;font-weight:600}
+h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,4vw,3rem);color:var(--w);line-height:1.12;margin-bottom:14px}
+.desc{color:var(--m);max-width:520px}
+.sh{margin-bottom:52px}
+.sh.center{text-align:center}.sh.center .desc{margin:0 auto}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.g3{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.g4{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--b);border-radius:var(--r);padding:26px 22px;transition:transform var(--tr),border-color var(--tr),box-shadow var(--tr)}
+.card:hover{transform:translateY(-4px);border-color:rgba(0,230,118,.38);box-shadow:0 12px 40px rgba(0,0,0,.45)}
+
+/* MODULE CARDS */
+.mod-card{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.mod-left{display:flex;gap:14px;align-items:flex-start;flex:1}
+.mod-n{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--g);opacity:.45;min-width:30px}
+.mod-t{font-weight:700;color:var(--w);font-size:.93rem;line-height:1.4}
+.mod-d{font-size:.78rem;color:var(--m);margin-top:4px}
+.mod-p{font-family:'Syne',sans-serif;font-weight:800;font-size:.92rem;color:var(--g);white-space:nowrap;flex-shrink:0}
+
+/* TOTAL ROW */
+.total-row{background:var(--card);border:1px solid var(--b);border-radius:var(--r);padding:22px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-top:28px}
+.total-price{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--g)}
+.total-lbl{font-size:.72rem;color:var(--m);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.total-note{font-size:.78rem;color:var(--m);margin-top:4px}
+
+/* TRUST BADGES */
+.trust{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.trust-badge{background:rgba(0,230,118,.07);border:1px solid var(--b);border-radius:50px;padding:6px 16px;font-size:.75rem;color:var(--m)}
+
+/* TESTIMONIALS */
+.test-card{position:relative}
+.test-card blockquote{font-size:.92rem;color:var(--t);line-height:1.7;margin-bottom:16px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gd),#003d18);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;color:var(--g);flex-shrink:0}
+.test-name{font-weight:600;color:var(--w);font-size:.88rem}
+.test-role{font-size:.75rem;color:var(--m)}
+.stars{color:#ffd700;font-size:.85rem;margin-bottom:12px}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--b);padding:20px 0}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;color:var(--w);font-size:.95rem;gap:12px}
+.faq-icon{color:var(--g);font-size:1.2rem;flex-shrink:0;transition:transform var(--tr)}
+.faq-a{display:none;color:var(--m);font-size:.88rem;margin-top:12px;line-height:1.8}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-item.open .faq-a{display:block}
+
+/* CTA BOX */
+.cta-box{background:var(--card);border:1px solid var(--b);border-radius:20px;padding:56px 44px;text-align:center}
+.cta-box p{color:var(--m);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
+
+/* INSTRUCTOR */
+.inst-wrap{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
+.inst-av{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,var(--gd),#003d18);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--g);flex-shrink:0;border:3px solid var(--b)}
+.inst-name{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--w);margin-bottom:4px}
+.inst-role{color:var(--g);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.inst-bio{color:var(--m);font-size:.9rem;max-width:480px;line-height:1.8}
+.inst-socials{display:flex;gap:10px;margin-top:16px}
+
+/* PILL */
+.pill{display:inline-block;padding:4px 13px;border-radius:50px;font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.pill-g{background:rgba(0,230,118,.12);color:var(--g)}
+.pill-w{background:rgba(255,255,255,.06);color:var(--m)}
+
+/* CHATBOT */
+.chatbox{position:fixed;bottom:24px;right:24px;z-index:400;width:360px;background:var(--card);border:1px solid var(--b);border-radius:18px;box-shadow:0 12px 50px rgba(0,0,0,.6);overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,opacity .3s}
+.chatbox.collapsed{transform:translateY(calc(100% - 58px))}
+.chat-hdr{background:var(--s);padding:13px 18px;display:flex;align-items:center;gap:11px;cursor:pointer;border-bottom:1px solid var(--b);flex-shrink:0}
+.chat-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gd),#003d18);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:.8rem;font-weight:800;color:var(--g);flex-shrink:0}
+.chat-nm{font-weight:700;color:var(--w);font-size:.88rem}
+.chat-st{font-size:.68rem;color:var(--g)}
+.chat-tg{color:var(--m);font-size:.78rem;margin-left:auto}
+.chat-msgs{height:260px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.chat-msgs::-webkit-scrollbar{width:3px}
+.chat-msgs::-webkit-scrollbar-thumb{background:var(--b);border-radius:3px}
+.msg{padding:11px 14px;border-radius:14px;font-size:.85rem;line-height:1.6;max-width:86%}
+.msg-b{background:var(--s);border:1px solid var(--b);align-self:flex-start;border-bottom-left-radius:4px}
+.msg-u{background:var(--g);color:#000;align-self:flex-end;border-bottom-right-radius:4px;font-weight:500}
+.qbtns{display:flex;gap:6px;flex-wrap:wrap;padding:0 14px 10px}
+.qbtn{background:var(--s);border:1px solid var(--b);border-radius:50px;padding:5px 13px;font-size:.72rem;color:var(--t);cursor:pointer;transition:border-color var(--tr),color var(--tr);font-family:inherit}
+.qbtn:hover{border-color:var(--g);color:var(--g)}
+.chat-inp-row{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--b)}
+.chat-inp{flex:1;background:var(--s);border:1px solid var(--b);border-radius:50px;padding:9px 15px;color:var(--t);font-size:.84rem;font-family:inherit;outline:none;transition:border-color var(--tr)}
+.chat-inp:focus{border-color:var(--g)}
+.chat-send{background:var(--g);color:#000;border:none;border-radius:50px;padding:9px 16px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;transition:transform var(--tr)}
+.chat-send:hover{transform:scale(1.06)}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .55s ease,transform .55s ease}
+.rev.on{opacity:1;transform:translateY(0)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;background:var(--s);border-top:1px solid var(--b);padding:48px 24px 28px}
+.ft-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+.ft-logo{font-family:'Syne',sans-serif;font-weight:800;color:var(--g);letter-spacing:3px;font-size:1rem;margin-bottom:12px}
+.ft-desc{font-size:.82rem;color:var(--m);line-height:1.8;max-width:220px}
+.ft-title{font-weight:700;color:var(--w);font-size:.85rem;margin-bottom:14px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-links a{font-size:.82rem;color:var(--m);transition:color var(--tr)}
+.ft-links a:hover{color:var(--g)}
+.ft-bottom{max-width:1080px;margin:32px auto 0;padding-top:20px;border-top:1px solid var(--b);display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:12px}
+.ft-copy{font-size:.75rem;color:var(--m)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .ft-inner{grid-template-columns:1fr 1fr}
+  .nav{padding:14px 20px}
+  .nav-links{display:none;position:fixed;top:58px;left:0;right:0;background:var(--s);padding:20px;flex-direction:column;border-bottom:1px solid var(--b);gap:16px;z-index:499}
+  .nav-links.open{display:flex}
+  .hamburger{display:flex}
+  .chatbox{width:calc(100vw - 32px);right:16px}
+  .cta-box{padding:36px 22px}
+  .stats-bar{border-radius:12px}
+  .stat-item{min-width:100px;padding:18px 20px}
+}
+@media(max-width:600px){
+  .ft-inner{grid-template-columns:1fr}
+  .inst-wrap{justify-content:center;text-align:center}
+  .inst-socials{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-logo">AIA Sénégal</span>
+  <div class="nav-links" id="nav-menu">
+    <a href="#modules">Programme</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#temoignages">Avis</a>
+    <a href="#faq">FAQ</a>
+    <a href="dashboard.html">Mon espace</a>
+    <a href="register.html" class="nav-btn">S'inscrire</a>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('nav-menu').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="glow"></div>
+  <div class="badge"><div class="dot"></div>Promotion 2026 — Inscriptions ouvertes</div>
+  <h1>La formation IA<br><em>No-Code #1</em><br>en Afrique</h1>
+  <p class="sub">10 modules complets pour maîtriser l'Intelligence Artificielle, créer vos Agents IA autonomes et automatiser votre business — sans coder.</p>
+  <div class="btns">
+    <a href="register.html" class="btn btn-p">🚀 Commencer maintenant</a>
+    <a href="#modules" class="btn btn-o">Voir le programme</a>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-item"><div class="sn">10</div><div class="sl">Modules</div></div>
+    <div class="stat-item"><div class="sn">375K</div><div class="sl">FCFA total</div></div>
+    <div class="stat-item"><div class="sn">24/7</div><div class="sl">Agent Mame Yo</div></div>
+    <div class="stat-item"><div class="sn">100%</div><div class="sl">No-Code</div></div>
+    <div class="stat-item"><div class="sn">1</div><div class="sl">Diplôme</div></div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="sec sec-dark" id="modules">
+  <div class="wrap">
+    <div class="sh rev">
+      <div class="lbl">Programme complet</div>
+      <h2>10 modules pour maîtriser l'IA<br>& créer vos Agents autonomes</h2>
+      <p class="desc">De la stratégie IA jusqu'aux Agents autonomes — un parcours conçu pour la réalité africaine.</p>
+    </div>
+    <div class="g2">
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">01</div><div><div class="mod-t">Stratégie & Écosystème IA</div><div class="mod-d">Où l'argent se cache dans l'IA · Opportunités au Sénégal</div></div></div><div class="mod-p">15 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">02</div><div><div class="mod-t">Maîtrise des LLM</div><div class="mod-d">ChatGPT, Claude, Gemini comme un expert</div></div></div><div class="mod-p">15 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">03</div><div><div class="mod-t">Prompt Engineering Expert</div><div class="mod-d">Zéro erreur · Résultats professionnels garantis</div></div></div><div class="mod-p">25 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">04</div><div><div class="mod-t">Design & Image Générative</div><div class="mod-d">Midjourney · DALL-E · Économie sur les agences</div></div></div><div class="mod-p">25 000 F</div></div>
+      <div class="card mod-card rev" style="border-color:rgba(0,230,118,.35)"><div class="mod-left"><div class="mod-n">05</div><div><div class="mod-t">Appels d'Offres DAO ⭐</div><div class="mod-d">Gagner des marchés publics et privés avec l'IA</div></div></div><div class="mod-p">75 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">06</div><div><div class="mod-t">Création de Sites Web No-Code</div><div class="mod-d">Framer · Webflow · Vitrine pro en 1 après-midi</div></div></div><div class="mod-p">35 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">07</div><div><div class="mod-t">Automatisation WhatsApp & SAV</div><div class="mod-d">Vendre et répondre 24h/24 automatiquement</div></div></div><div class="mod-p">35 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">08</div><div><div class="mod-t">Logique Agentic</div><div class="mod-d">Passer de l'assistant à l'agent qui décide seul</div></div></div><div class="mod-p">40 000 F</div></div>
+      <div class="card mod-card rev" style="border-color:rgba(0,230,118,.35)"><div class="mod-left"><div class="mod-n">09</div><div><div class="mod-t">Création d'Agents IA ⭐</div><div class="mod-d">Armée d'employés virtuels autonomes 24h/24</div></div></div><div class="mod-p">85 000 F</div></div>
+      <div class="card mod-card rev"><div class="mod-left"><div class="mod-n">10</div><div><div class="mod-t">Projet Final & Diplôme</div><div class="mod-d">Validation officielle · Remise du diplôme AIA</div></div></div><div class="mod-p">25 000 F</div></div>
+    </div>
+    <div class="total-row rev">
+      <div>
+        <div class="total-lbl">Formation complète</div>
+        <div class="total-price">375 000 FCFA</div>
+        <div class="total-note">💳 Wave · Orange Money · Free Money · Stripe · Module par module</div>
+      </div>
+      <a href="register.html" class="btn btn-p">S'inscrire maintenant →</a>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section class="sec" id="pourquoi">
+  <div class="wrap">
+    <div class="sh center rev">
+      <div class="lbl">Pourquoi AIA Sénégal</div>
+      <h2>Ce que vous ne trouvez<br>nulle part ailleurs en Afrique</h2>
+    </div>
+    <div class="g3">
+      <div class="card rev"><div style="font-size:1.8rem;margin-bottom:12px">🤖</div><h3 style="color:var(--w);margin-bottom:8px;font-size:1rem">Agent Mame Yo 24/7</h3><p style="color:var(--m);font-size:.85rem">Directrice & Agente IA disponible en permanence pour répondre, enseigner et guider chaque étudiant.</p></div>
+      <div class="card rev"><div style="font-size:1.8rem;margin-bottom:12px">📋</div><h3 style="color:var(--w);margin-bottom:8px;font-size:1rem">Appels d'Offres DAO</h3><p style="color:var(--m);font-size:.85rem">Le module le plus demandé : gagnez des marchés publics grâce à l'IA. Unique en Afrique de l'Ouest.</p></div>
+      <div class="card rev"><div style="font-size:1.8rem;margin-bottom:12px">📱</div><h3 style="color:var(--w);margin-bottom:8px;font-size:1rem">WhatsApp Business</h3><p style="color:var(--m);font-size:.85rem">Automatisez WhatsApp, le canal n°1 au Sénégal. Vendez et répondez sans intervention humaine.</p></div>
+      <div class="card rev"><div style="font-size:1.8rem;margin-bottom:12px">🎯</div><h3 style="color:var(--w);margin-bottom:8px;font-size:1rem">100% No-Code</h3><p style="color:var(--m);font-size:.85rem">Aucune compétence technique requise. Tous les outils sont accessibles à tout entrepreneur.</p></div>
+      <div class="card rev"><div style="font-size:1.8rem;margin-bottom:12px">🏅</div><h3 style="color:var(--w);margin-bottom:8px;font-size:1rem">Diplôme Officiel</h3><p style="color:var(--m);font-size:.85rem">Certification reconnue émise après projet final. QR code unique, vérifiable par toute entreprise.</p></div>
+      <div class="card rev"><div style="font-size:1.8rem;margin-bottom:12px">💰</div><h3 style="color:var(--w);margin-bottom:8px;font-size:1rem">ROI Immédiat</h3><p style="color:var(--m);font-size:.85rem">Chaque module est conçu pour générer un retour sur investissement dès la semaine suivante.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section class="sec sec-dark" id="tarifs">
+  <div class="wrap">
+    <div class="sh center rev">
+      <div class="lbl">Tarifs flexibles</div>
+      <h2>Accessible à tous les budgets</h2>
+    </div>
+    <div class="g3 wrap-md">
+      <div class="card rev" style="text-align:center">
+        <div class="pill pill-w" style="margin-bottom:14px">Modulaire</div>
+        <h3 style="color:var(--w);font-size:1.1rem;margin-bottom:8px">Module par module</h3>
+        <p style="color:var(--m);font-size:.85rem;margin-bottom:20px">Achetez selon vos priorités. De 15 000 à 85 000 FCFA par module.</p>
+        <a href="#modules" class="btn btn-o btn-sm">Voir les modules</a>
+      </div>
+      <div class="card rev" style="text-align:center;border-color:rgba(0,230,118,.4)">
+        <div class="pill pill-g" style="margin-bottom:14px">⭐ Recommandé</div>
+        <h3 style="color:var(--w);font-size:1.1rem;margin-bottom:4px">Formation complète</h3>
+        <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--g);margin:10px 0">375 000 F</div>
+        <p style="color:var(--m);font-size:.85rem;margin-bottom:20px">Les 10 modules + diplôme officiel + accès à vie.</p>
+        <a href="register.html" class="btn btn-p btn-sm">S'inscrire →</a>
+      </div>
+      <div class="card rev" style="text-align:center">
+        <div class="pill pill-w" style="margin-bottom:14px">Paiements</div>
+        <h3 style="color:var(--w);font-size:1.1rem;margin-bottom:8px">Méthodes acceptées</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:.83rem;color:var(--m);margin-bottom:20px">
+          <span>💚 Wave</span><span>🟠 Orange Money</span><span>🔵 Free Money</span><span>💳 Stripe</span>
+        </div>
+        <a href="https://wa.me/221770000000" target="_blank" class="btn btn-o btn-sm">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="trust rev">
+      <span class="trust-badge">✅ Accès immédiat après paiement</span>
+      <span class="trust-badge">🔁 Remboursement 7 jours</span>
+      <span class="trust-badge">♾️ Accès à vie aux modules achetés</span>
+      <span class="trust-badge">🎓 Diplôme officiel inclus</span>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="sec" id="temoignages">
+  <div class="wrap">
+    <div class="sh center rev">
+      <div class="lbl">Témoignages</div>
+      <h2>Ce que disent nos apprenants</h2>
+    </div>
+    <div class="g3">
+      <div class="card test-card rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Grâce au Module 5 sur les DAO, j'ai décroché un marché de 12 millions FCFA le mois suivant ma formation. Le ROI est immédiat !"</blockquote>
+        <div class="test-author"><div class="test-av">AD</div><div><div class="test-name">Abdou Diallo</div><div class="test-role">Consultant BTP · Dakar</div></div></div>
+      </div>
+      <div class="card test-card rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Mon agent WhatsApp répond à mes clients 24h/24. Je passe moins de temps au téléphone et mes ventes ont augmenté de 40%."</blockquote>
+        <div class="test-author"><div class="test-av">FN</div><div><div class="test-name">Fatou Ndiaye</div><div class="test-role">Commerçante · Thiès</div></div></div>
+      </div>
+      <div class="card test-card rev">
+        <div class="stars">★★★★★</div>
+        <blockquote>"Mame Yo m'a accompagné à chaque étape. C'est comme avoir une professeure privée disponible à 3h du matin. Incroyable !"</blockquote>
+        <div class="test-author"><div class="test-av">MB</div><div><div class="test-name">Mamadou Baldé</div><div class="test-role">Étudiant en entrepreneuriat · Ziguinchor</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATEUR -->
+<section class="sec sec-dark">
+  <div class="wrap-sm">
+    <div class="inst-wrap rev">
+      <div class="inst-av">MB</div>
+      <div>
+        <div class="lbl">Votre formateur</div>
+        <div class="inst-name">Momar Ba</div>
+        <div class="inst-role">Fondateur · AIA Sénégal · Expert IA</div>
+        <p class="inst-bio">Expert en Intelligence Artificielle appliquée au business africain. Momar Ba forme les entrepreneurs sénégalais à créer des agents IA, automatiser leur activité et gagner des marchés grâce aux meilleurs outils No-Code. Sa vision : faire du Sénégal un hub de l'économie agentique en Afrique.</p>
+        <div class="inst-socials">
+          <a href="https://facebook.com/ExpertAutoPME" target="_blank" rel="noopener" class="btn btn-o btn-sm">📘 Facebook</a>
+          <a href="/cdn-cgi/l/email-protection#c9acbda0e7a0a7afa6baaba889aea4a8a0a5e7aaa6a4" class="btn btn-o btn-sm">✉️ Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap-md">
+    <div class="sh center rev">
+      <div class="lbl">Questions fréquentes</div>
+      <h2>Tout ce que vous devez savoir</h2>
+    </div>
+    <div class="rev">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Faut-il des connaissances techniques pour suivre la formation ? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Non, absolument pas. La formation est 100% No-Code. Aucune compétence en programmation n'est requise. Si vous savez utiliser WhatsApp et un smartphone, vous pouvez suivre tous les modules.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Qu'est-ce que l'agent IA Mame Yo Cissé ? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Mame Yo Cissé est à la fois la Directrice d'AIA Sénégal (personne réelle) et une agente IA qui la représente sur la plateforme. L'agent IA est disponible 24h/24 pour répondre à vos questions, vous enseigner le contenu des modules et vous guider dans votre parcours.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Comment se passe le paiement ? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Vous pouvez payer par Wave, Orange Money, Free Money ou Stripe. Après paiement, envoyez votre reçu à <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="83e6f7eaadeaede5ecf0e1e2c3e4eee2eaefade0ecee">[email&#160;protected]</a> avec votre numéro de téléphone. Les modules sont débloqués dans les 24h. Vous pouvez aussi payer module par module selon votre budget.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Combien de temps dure la formation ? <span class="faq-icon">+</span></div>
+        <div class="faq-a">La durée dépend de votre rythme. À temps partiel (2-3h par semaine) : 3 à 6 mois. À temps plein : 4 à 8 semaines. Vous avancez à votre propre rythme avec un accès à vie aux modules achetés.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Le diplôme est-il reconnu ? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Oui, le diplôme AIA Sénégal est remis après validation du projet final. Il inclut un QR code unique vérifiable par toute entreprise ou partenaire. Nous travaillons à son accréditation officielle avec les institutions sénégalaises.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Y a-t-il une politique de remboursement ? <span class="faq-icon">+</span></div>
+        <div class="faq-a">Oui, nous offrons un remboursement intégral dans les 7 jours suivant votre inscription si vous n'êtes pas satisfait, sans condition ni question. Votre satisfaction est notre priorité.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="sec sec-dark">
+  <div class="wrap-sm">
+    <div class="cta-box rev" style="background:radial-gradient(ellipse at center,rgba(0,230,118,.07) 0%,var(--card) 70%)">
+      <div class="lbl">Passez à l'action</div>
+      <h2 style="margin-bottom:12px">Votre business mérite<br>des employés IA</h2>
+      <p>Rejoignez la promotion 2026. Commencez avec le module de votre choix dès aujourd'hui et transformez votre business avec l'IA.</p>
+      <div class="btns" style="justify-content:center;margin-bottom:16px">
+        <a href="register.html" class="btn btn-p">🚀 Je m'inscris maintenant</a>
+        <a href="https://wa.me/221770000000" target="_blank" class="btn btn-o">💬 WhatsApp</a>
+      </div>
+      <p style="font-size:.8rem;color:var(--m)">✉️ <a href="/cdn-cgi/l/email-protection#b0d5c4d99ed9ded6dfc3d2d1f0d7ddd1d9dc9ed3dfdd" style="color:var(--g)"><span class="__cf_email__" data-cfemail="0461706d2a6d6a626b776665446369656d682a676b69">[email&#160;protected]</span></a> &nbsp;·&nbsp; 📘 <a href="https://facebook.com/ExpertAutoPME" target="_blank" style="color:var(--g)">ExpertAutoPME</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="ft-logo">AIA SÉNÉGAL</div>
+      <p class="ft-desc">La plateforme de formation IA No-Code #1 en Afrique de l'Ouest. Créez vos agents IA et automatisez votre business.</p>
+    </div>
+    <div>
+      <div class="ft-title">Formation</div>
+      <ul class="ft-links">
+        <li><a href="#modules">Programme</a></li>
+        <li><a href="#tarifs">Tarifs</a></li>
+        <li><a href="register.html">S'inscrire</a></li>
+        <li><a href="dashboard.html">Mon espace</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-title">Plateforme</div>
+      <ul class="ft-links">
+        <li><a href="formation.html">Cours en ligne</a></li>
+        <li><a href="quiz.html">Quiz final</a></li>
+        <li><a href="certificat.html">Certification</a></li>
+        <li><a href="verification.html">Vérifier diplôme</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="ft-title">Contact</div>
+      <ul class="ft-links">
+        <li><a href="/cdn-cgi/l/email-protection#82e7f6ebacebece4edf1e0e3c2e5efe3ebeeace1edef">Email</a></li>
+        <li><a href="https://facebook.com/ExpertAutoPME" target="_blank">Facebook</a></li>
+        <li><a href="https://wa.me/221770000000" target="_blank">WhatsApp</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy">© 2026 AIA Sénégal — Par Momar Ba · Tous droits réservés</span>
+    <span class="ft-copy">Formation IA No-Code · Dakar, Sénégal</span>
+  </div>
+</footer>
+
+<!-- CHATBOT MAME YO (IA RÉELLE via n8n) -->
+<div class="chatbox" id="chatbox">
+  <div class="chat-hdr" onclick="toggleChat()">
+    <div class="chat-av">MY</div>
+    <div>
+      <div class="chat-nm">Mame Yo Cissé</div>
+      <div class="chat-st">● En ligne — Directrice & Agente IA</div>
+    </div>
+    <div class="chat-tg" id="ctg">▼</div>
+  </div>
+  <div class="chat-msgs" id="chat-msgs"></div>
+  <div class="qbtns">
+    <button class="qbtn" onclick="qs('programme')">Programme</button>
+    <button class="qbtn" onclick="qs('tarifs')">Tarifs</button>
+    <button class="qbtn" onclick="qs('comment payer')">Payer</button>
+    <button class="qbtn" onclick="qs('inscription')">S\'inscrire</button>
+    <button class="qbtn" onclick="qs('module 5 dao')">Module DAO</button>
+  </div>
+  <div class="chat-inp-row">
+    <input class="chat-inp" id="ci" placeholder="Posez n'importe quelle question..." onkeydown="if(event.key==='Enter')send()"/>
+    <button class="chat-send" onclick="send()">Envoyer</button>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   MAME YO CISSÉ — Réponses automatiques
+   Directrice & Agente IA Formatrice
+══════════════════════════════════════════ */
+
+const REPSONSES = {
+  bonjour: "Wa alaykum salam ! 😊 Je suis **Mame Yo Cissé**, Directrice & Agente IA Formatrice d'AIA Sénégal. Comment puis-je vous aider aujourd'hui ?",
+  programme: "Notre formation comprend **10 modules complets** :\n\n📌 M1 : Stratégie & Écosystème IA — 15 000 F\n📌 M2 : Maîtrise des LLM — 15 000 F\n📌 M3 : Prompt Engineering Expert — 25 000 F\n📌 M4 : Design & Image Générative — 25 000 F\n⭐ M5 : Appels d'Offres DAO — 75 000 F\n📌 M6 : Sites Web No-Code — 35 000 F\n📌 M7 : Automatisation WhatsApp & SAV — 35 000 F\n📌 M8 : Logique Agentic — 40 000 F\n⭐ M9 : Création d'Agents IA — 85 000 F\n📌 M10 : Projet Final & Diplôme — 25 000 F\n\n💰 **Total : 375 000 FCFA** — ou module par module !",
+  tarif: "Nos tarifs sont très flexibles 💚\n\n🧩 **Module par module** : de 15 000 à 85 000 FCFA\n🎯 **Formation complète** : 375 000 FCFA tout inclus\n\nVous pouvez commencer par le module qui vous intéresse le plus et continuer à votre rythme. Accès à vie aux modules achetés !",
+  payer: "Nous acceptons plusieurs moyens de paiement 💳\n\n💚 **Wave**\n🟠 **Orange Money**\n🔵 **Free Money**\n💳 **Stripe** (carte bancaire)\n\nAprès paiement, envoyez votre reçu à **eti.infosba@gmail.com** avec votre numéro de téléphone. Les modules sont débloqués dans les 24h ✅",
+  inscription: "Pour vous inscrire, c'est simple ! 📝\n\n1️⃣ Remplissez le formulaire : **tally.so/r/n/ExpertAutoPME**\n2️⃣ Ou écrivez à : **eti.infosba@gmail.com**\n3️⃣ Ou contactez-nous sur **Facebook/ExpertAutoPME**\n4️⃣ Ou via **WhatsApp** directement\n\nJe vous attends avec plaisir ! 🌿",
+  dao: "Le **Module 5 — Appels d'Offres DAO** ⭐ est notre module phare !\n\n💰 **Prix : 75 000 FCFA**\n\nCe module vous apprend à :\n✅ Trouver automatiquement les appels d'offres de votre secteur\n✅ Analyser les cahiers des charges avec l'IA\n✅ Rédiger des offres gagnantes en temps record\n✅ Gagner des marchés publics et privés\n\n🏆 Un seul marché gagné peut rembourser 10x le prix de toute la formation !",
+  agent: "Le **Module 9 — Création d'Agents IA** ⭐ est le plus avancé !\n\n💰 **Prix : 85 000 FCFA**\n\nVous allez créer :\n🤖 Agent Commercial qui vend automatiquement\n🤖 Agent CRM qui gère vos clients\n🤖 Agent Support qui répond 24h/24\n🤖 Agent WhatsApp pour vos messages\n\n💰 **Monétisation** : vendez vos agents de 200 000 à 2 000 000 FCFA ou en abonnement mensuel !",
+  whatsapp: "Le **Module 7 — Automatisation WhatsApp & SAV** 📱\n\n💰 **Prix : 35 000 FCFA**\n\n97% de vos clients sont sur WhatsApp ! Ce module vous apprend à :\n✅ Configurer WhatsApp Business API\n✅ Créer des réponses automatiques intelligentes\n✅ Vendre et répondre 24h/24 sans humain\n✅ Qualifier les prospects automatiquement\n\n📈 Résultat moyen : **+40% de ventes** dès le premier mois !",
+  diplome: "Oui, vous obtenez un **Diplôme Officiel AIA Sénégal** ! 🏅\n\nLe diplôme inclut :\n✅ Votre nom et formation certifiée\n✅ Un **QR code unique** vérifiable par toute entreprise\n✅ La signature de Momar Ba & Mame Yo Cissé\n✅ La date et le score obtenu\n\nCondition : passer le Quiz Final avec un score **≥ 70%** 📝",
+  duree: "La formation est **à votre rythme** ⏱️\n\n📅 À temps partiel (2-3h/semaine) : 3 à 6 mois\n📅 À temps plein : 4 à 8 semaines\n\nVous avez un **accès à vie** aux modules achetés. Pas de pression, avancez selon vos disponibilités !",
+  remboursement: "Oui, nous offrons une **garantie de remboursement** 🔁\n\nSi vous n'êtes pas satisfait dans les **7 jours** suivant votre inscription, nous vous remboursons intégralement, sans condition ni question.\n\nVotre satisfaction est notre priorité ! 💚",
+  mameyo: "Je suis **Mame Yo Cissé** — Directrice d'AIA Sénégal et Agente IA Formatrice 🌿\n\nJe suis à la fois :\n👩‍💼 **Directrice réelle** d'AIA Sénégal — je signe votre diplôme\n🤖 **Agente IA** disponible 24h/24 pour vous enseigner les 10 modules\n\nMon rôle : vous accompagner de l'inscription jusqu'à la certification !",
+  contact: "Contactez-nous facilement 📞\n\n✉️ **Email** : eti.infosba@gmail.com\n📘 **Facebook** : facebook.com/ExpertAutoPME\n💬 **WhatsApp** : +221 77 000 00 00\n📝 **Formulaire** : tally.so/r/n/ExpertAutoPME\n\nNous répondons dans les plus brefs délais ! 🌿",
+  default: "Merci pour votre question 😊 Je peux vous renseigner sur :\n\n📚 Le **programme** des 10 modules\n💰 Les **tarifs** et modes de paiement\n📝 L'**inscription** et comment démarrer\n🏅 Le **diplôme** et la certification\n🤖 Les **Agents IA** et l'Agentic Business\n\nOu écrivez directement à **eti.infosba@gmail.com** — Momar Ba vous répondra personnellement ! 🌿"
+};
+
+function getReply(t){
+  t=t.toLowerCase();
+  if(/bonjour|salam|salut|bonsoir|hello|hi/.test(t)) return REPSONSES.bonjour;
+  if(/dao|appel.+offre|offre.+appel|marché.+public|dcmp/.test(t)) return REPSONSES.dao;
+  if(/module.?5|m5/.test(t)) return REPSONSES.dao;
+  if(/module.?9|m9|créer.+agent|creation.+agent/.test(t)) return REPSONSES.agent;
+  if(/module.?7|m7/.test(t)) return REPSONSES.whatsapp;
+  if(/agent|agentic|autonome|langgraph/.test(t)) return REPSONSES.agent;
+  if(/whatsapp|sav|automatisation|automatiser/.test(t)) return REPSONSES.whatsapp;
+  if(/programme|module|formation|contenu|cours/.test(t)) return REPSONSES.programme;
+  if(/tarif|prix|coût|combien|coute/.test(t)) return REPSONSES.tarif;
+  if(/reçu|envoyer|envoyé|j.ai payé|j.ai paye|virement|confirmation|preuve/.test(t)) return "Merci pour votre paiement ! 🙏\n\nJe suis une agente IA — je ne peux pas voir ni vérifier votre reçu directement.\n\n📩 Envoyez votre reçu à :\n**eti.infosba@gmail.com**\n\nAvec en message :\n✅ Votre nom complet\n✅ Votre numéro de téléphone\n✅ Le(s) module(s) acheté(s)\n✅ La capture ou le reçu de paiement\n\nMomar Ba ou Mame Yo Cissé vous confirmera le déblocage dans les **24h** ! 🌿";
+  if(/payer|paiement|wave|orange|money|stripe/.test(t)) return REPSONSES.payer;
+  if(/inscrire|inscription|rejoindre|commencer|démarrer/.test(t)) return REPSONSES.inscription;
+  if(/diplôme|certificat|certif|diplome/.test(t)) return REPSONSES.diplome;
+  if(/durée|temps|rythme|semaine|mois/.test(t)) return REPSONSES.duree;
+  if(/rembours|satisfait|garanti/.test(t)) return REPSONSES.remboursement;
+  if(/mame|yo|cissé|directrice|qui es/.test(t)) return REPSONSES.mameyo;
+  if(/contact|email|facebook|numéro|téléphone/.test(t)) return REPSONSES.contact;
+  if(/merci|xawar/.test(t)) return "Avec plaisir ! N'hésitez pas si vous avez d'autres questions 🌿";
+  return REPSONSES.default;
+}
+
+let collapsed=false, busy=false;
+
+function toggleChat(){
+  collapsed=!collapsed;
+  document.getElementById('chatbox').classList.toggle('collapsed',collapsed);
+  document.getElementById('ctg').textContent=collapsed?'▲':'▼';
+}
+
+function addMsg(role,html){
+  const box=document.getElementById('chat-msgs');
+  const d=document.createElement('div');
+  d.className='msg msg-'+(role==='bot'?'b':'u');
+  d.innerHTML=html.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+  box.appendChild(d);
+  box.scrollTop=box.scrollHeight;
+  return d;
+}
+
+function send(){
+  if(busy)return;
+  const inp=document.getElementById('ci');
+  const v=inp.value.trim();
+  if(!v)return;
+  addMsg('user',v);
+  inp.value='';busy=true;
+
+  // Typing indicator
+  const tp=addMsg('bot','<span style="display:flex;gap:4px;align-items:center"><span style="width:7px;height:7px;border-radius:50%;background:var(--m);animation:tp .9s infinite"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--m);animation:tp .9s .2s infinite"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--m);animation:tp .9s .4s infinite"></span></span>');
+
+  // Simulate thinking delay
+  setTimeout(()=>{
+    tp.remove();
+    addMsg('bot', getReply(v));
+    busy=false;
+  }, 700 + Math.random()*400);
+}
+
+function qs(t){document.getElementById('ci').value=t;send();}
+
+// Typing CSS
+const s=document.createElement('style');
+s.textContent='@keyframes tp{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-6px);opacity:1}}';
+document.head.appendChild(s);
+
+// Greeting
+setTimeout(()=>addMsg('bot','Salam ! 👋 Je suis <strong>Mame Yo Cissé</strong> — Directrice & Agente IA Formatrice d\'AIA Sénégal.<br/><br/>Je peux répondre à toutes vos questions sur la formation ! Tapez <strong>programme</strong>, <strong>tarifs</strong>, <strong>inscription</strong> ou posez votre question 🎓'),900);
+
+// Scroll reveal
+const ro=new IntersectionObserver(en=>{en.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*55);ro.unobserve(e.target);}});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+</body>
+</html>
